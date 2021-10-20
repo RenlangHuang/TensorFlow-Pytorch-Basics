@@ -9,4 +9,4 @@ python 3,
 CUDA and CUDNN,
 tensorflow-gpu 2.0+
 
-tf_test.py can verify that your installation and environment configuration are correct.
+tftest.py can verify that your installation and environment configuration are correct.
