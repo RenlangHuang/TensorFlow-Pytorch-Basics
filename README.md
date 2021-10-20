@@ -5,6 +5,6 @@ We provide detailed examples of the basic functions and APIs, and we introduce M
 such as the iris dataset, the mnist dataset, the cifar-10 dataset, the fashion dataset and so on.
 
 Requirements:
-python 3
-CUDA and CUDNN
+python 3,
+CUDA and CUDNN,
 tensorflow-gpu 2.0+
