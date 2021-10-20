@@ -10,3 +10,5 @@ CUDA and CUDNN,
 tensorflow-gpu 2.0+
 
 tftest.py can verify that your installation and environment configuration are correct.
+
+Moreover, I am also programing a pytorch source code project tutorial like this at present, it will be uploaded here after sufficient validation of the correctness and the efficiency by comparing the training processes with those implemented via tensorflow.
