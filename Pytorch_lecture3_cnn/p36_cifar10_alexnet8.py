@@ -5,7 +5,6 @@ import torch
 import numpy as np
 import tensorflow as tf
 from torch.autograd import Variable
-from collections import OrderedDict
 from matplotlib import pyplot as plt
 from torch.utils.data import TensorDataset,DataLoader
 
