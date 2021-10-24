@@ -39,6 +39,8 @@ if torch.cuda.is_available():
     print('GPU detected! Loading the model to CUDA...')
 gpu_device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model.to(gpu_device)
+model.eval()
+
 
 # pre-trained model evaluation
 if torch.cuda.is_available():
