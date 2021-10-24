@@ -23,13 +23,13 @@ def evaluate(model,inputs,labels,batch_size=32):
     return float(accuracy)/float(inputs.shape[0])*100.0
 
 
-def training(model, Loss, optimizer, loader, epochs, training, validation,
+def training(model, Loss, optimizer, loader, epochs, train, validation,
     model_path, load_pretrained=True, save_model=True, visualizing=True):
 
     if load_pretrained and os.path.exists(model_path):
         print('------------load the model----------------')
         model.load_state_dict(torch.load(model_path))
-    x_train, y_train = training
+    x_train, y_train = train
     x_test, y_test = validation
     losses = []
     accuracy_train = []
@@ -47,7 +47,7 @@ def training(model, Loss, optimizer, loader, epochs, training, validation,
             loss = Loss(out,labels)
             batch_loss.append(loss.data.item())
             if step % 5 == 4:
-                print('epoch %d, batch %d: loss = %.4f'%(epoch+1,step+1,batch_loss[-1]))
+                print('epoch %d | batch %d: loss = %.4f'%(epoch+1,step+1,batch_loss[-1]))
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
