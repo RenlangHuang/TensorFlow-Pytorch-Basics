@@ -73,6 +73,7 @@ print('number of GPU: ',torch.cuda.device_count())
 #    model = torch.nn.DataParallel(model,device_ids=[0,1,2,3]) # default:using all
 gpu_device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model.to(gpu_device)
+model.eval()
 
 
 # evaluate the pre-trained model
