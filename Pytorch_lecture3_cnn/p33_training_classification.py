@@ -7,6 +7,7 @@ from matplotlib import pyplot as plt
 
 def evaluate(model,inputs,labels,batch_size=32):
     accuracy = 0
+    model.eval()
     gpu_available = torch.cuda.is_available()
     for i in range(0,inputs.shape[0],batch_size):
         if i+batch_size>=inputs.shape[0]:
@@ -36,6 +37,7 @@ def training(model, Loss, optimizer, loader, epochs, train, validation,
     accuracy_test = []
     best_acc = -100.0
     for epoch in range(epochs):
+        model.train()
         batch_loss = []
         for step,data in enumerate(loader):
             inputs, labels = data
