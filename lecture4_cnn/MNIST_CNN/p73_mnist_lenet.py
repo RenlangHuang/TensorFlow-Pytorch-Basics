@@ -124,9 +124,11 @@ print('softmax: ',result)
 print('softmax sum =',tf.reduce_sum(result))
 print('pred =',tf.argmax(result[0]).numpy(),', real =',y_train[sample])
 
-
-from p72_evaluation import evaluate
-training_accuracy = evaluate(model,x_train,y_train)
-validation_accuracy = evaluate(model,x_test,y_test)
-print('training_accuracy = %.4f, validation_accuracy = %.4f'%\
-    (training_accuracy,validation_accuracy))
+# evaluation
+training_loss, training_accuracy = model.evaluate(x_train,y_train)
+print('training_loss = %.4f, training_accuracy = %.4f'%(training_loss,training_accuracy))
+validation_loss, validation_accuracy = model.evaluate(x_test,y_test)
+print('validation_loss = %.4f, validation_accuracy = %.4f'%(validation_loss,validation_accuracy))
+accuracy = (training_accuracy*y_train.shape[0]+validation_accuracy*y_test.shape[0])
+accuracy /= (y_train.shape[0] + y_test.shape[0])
+print('total accuracy = %.4f'%accuracy)
