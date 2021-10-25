@@ -90,7 +90,7 @@ history = model.fit(x_train, y_train, batch_size=32, epochs=5, validation_data=(
 model.summary()
 
 # print(model.trainable_variables)
-file = open('./weights_mnist_AlexNet.txt', 'w')
+file = open('./weights_mnist_LeNet.txt', 'w')
 for v in model.trainable_variables:
     file.write(str(v.name) + '\n')
     file.write(str(v.shape) + '\n')
