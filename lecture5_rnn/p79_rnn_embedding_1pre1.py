@@ -71,7 +71,7 @@ cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_save_path,
                                                  save_best_only=True,
                                                  monitor='loss')  # 由于fit没有给出测试集，不计算测试集准确率，根据loss，保存最优模型
 
-'''history = model.fit(x_train, y_train, batch_size=32, epochs=100, callbacks=[cp_callback])
+history = model.fit(x_train, y_train, batch_size=32, epochs=100, callbacks=[cp_callback])
 model.summary()
 
 file = open('./weights_rnn1_emb.txt', 'w')
@@ -94,7 +94,7 @@ plt.subplot(1, 2, 2)
 plt.plot(loss, label='Training Loss')
 plt.title('Training Loss')
 plt.legend()
-plt.show()'''
+plt.show()
 
 # predict
 preNum = int(input("input the number of test alphabet:"))
