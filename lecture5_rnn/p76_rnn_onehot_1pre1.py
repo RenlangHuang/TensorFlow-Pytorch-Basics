@@ -1,8 +1,9 @@
+import os
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.layers import Dense, SimpleRNN
 import matplotlib.pyplot as plt
-import os
+from tensorflow.keras.layers import Dense, SimpleRNN
+
 
 input_word = "abcde"
 w_to_id = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4}  # 单词映射到数值id的词典
@@ -51,7 +52,7 @@ history = model.fit(x_train, y_train, batch_size=32, epochs=100, callbacks=[cp_c
 model.summary()
 
 # print(model.trainable_variables)
-file = open('./weights.txt', 'w')  # 参数提取
+file = open('./weights.txt', 'w')
 for v in model.trainable_variables:
     file.write(str(v.name) + '\n')
     file.write(str(v.shape) + '\n')
@@ -59,7 +60,6 @@ for v in model.trainable_variables:
 file.close()
 
 
-# 显示训练集和验证集的acc和loss曲线
 acc = history.history['sparse_categorical_accuracy']
 loss = history.history['loss']
 
@@ -80,7 +80,7 @@ for i in range(preNum):
     alphabet1 = input("input test alphabet:")
     alphabet = [id_to_onehot[w_to_id[alphabet1]]]
     alphabet = np.reshape(alphabet, (1, 1, 5))
-    result = model.predict([alphabet])
+    result = model.predict(alphabet)
     pred = tf.argmax(result, axis=1)
     pred = int(pred)
     tf.print(alphabet1 + '->' + input_word[pred])
