@@ -50,7 +50,7 @@ class DoubleDQN(object):
 
     def choose_action(self, s, greedy=False):
         s = torch.unsqueeze(torch.FloatTensor(s), 0) # 在dim=0增加维数为1的维度
-        if np.random.uniform() < EPSILON or greedy:  # ε-greedy
+        if greedy or np.random.uniform() < EPSILON:  # ε-greedy
             actions_value = self.eval_net.forward(s)
             action = torch.max(actions_value, 1)[1].data.numpy() # indices of maxQ
             action = action[0]
@@ -66,7 +66,7 @@ class DoubleDQN(object):
         self.memory[index, :] = transition
         self.memory_counter += 1
 
-    def learn(self):
+    def train(self):
         # update the target network asynchronously
         if self.learn_step_counter % TARGET_REPLACE_ITER == 0:
             self.target_net.load_state_dict(self.eval_net.state_dict())
@@ -92,7 +92,7 @@ class DoubleDQN(object):
         q_next = q_next.gather(1,a_next)
         # according to Bellman equation
         q_target = b_r + GAMMA * q_next.reshape(-1,1)
-        
+
         loss = self.loss_func(q_eval, q_target)
         self.optimizer.zero_grad()
         loss.backward()
@@ -123,7 +123,7 @@ for i in range(EPOCHS):
         s = s_
 
         if ddqn.memory_counter > BATCH_SIZE:
-            losses.append(ddqn.learn()) # experience replay
+            losses.append(ddqn.train()) # experience replay
 
         if done:
             print('episode %d, reward_sum: %.2f' % (i, episode_reward_sum))
