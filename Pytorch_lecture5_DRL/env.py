@@ -1,9 +1,4 @@
-import os
 import gym
-from gym.envs.registration import register
-import numpy as np
-import matplotlib.pyplot as plt
-
 
 register_envs = gym.envs.registry.all()
 for e in register_envs: print(e)
