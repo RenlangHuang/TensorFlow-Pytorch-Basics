@@ -8,7 +8,7 @@ Requirements:
 python 3,
 CUDA and CUDNN,
 tensorflow-gpu 2.0+,
-torch and torchvision
+torch and torchvision,
 gym
 
 tftest.py can verify that your installation and environment configuration are correct.
