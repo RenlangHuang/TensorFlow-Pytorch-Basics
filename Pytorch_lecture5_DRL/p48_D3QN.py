@@ -96,6 +96,7 @@ class DoubleDuelingDQN(object):
         q_next = q_next.gather(1,a_next)
         # according to Bellman equation
         q_target = b_r + GAMMA * q_next.reshape(-1,1)
+        
         loss = self.loss_func(q_eval, q_target)
         self.optimizer.zero_grad()
         loss.backward()
