@@ -108,19 +108,19 @@ class DDPG(object):
         bs_ = torch.FloatTensor(bt[:, -self.s_dim:])
 
         a = self.actor_eval(bs)
-        q = self.critic_eval(bs,a)  # loss=-q=-ce（s,ae（s））更新ae   ae（s）=a   ae（s_）=a_
+        q = self.critic_eval(bs,a)
         # 如果a是一个正确的行为，那么它的Q应该更贴近0
         loss_a = -torch.mean(q)
         self.actor_optimizer.zero_grad()
         loss_a.backward()
         self.actor_optimizer.step()
 
-        a_ = self.actor_target(bs_)  # 这个网络不及时更新参数, 用于预测 Critic 的 Q_target 中的 action
-        q_ = self.critic_target(bs_,a_)  # 这个网络不及时更新参数, 用于给出 Actor 更新参数时的 Gradient ascent 强度
-        q_target = br + GAMMA * q_   # q_target = 负的
+        a_ = self.actor_target(bs_)
+        q_ = self.critic_target(bs_,a_)
+        q_target = br + GAMMA * q_
         q_eval = self.critic_eval(bs,ba)
         td_error = self.loss_func(q_target,q_eval)
-        # td_error=R + GAMMA * ct（bs_,at(bs_)）-ce(s,ba) 更新ce ,但ae(s)是记忆中的ba，让ce得出的Q靠近Q_target,让评价更准确
+
         self.critic_optimizer.zero_grad()
         td_error.backward()
         self.critic_optimizer.step()
