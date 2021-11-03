@@ -74,4 +74,4 @@ for i in range(100):
 
 
 # many interesting robot simulations need installing MuJoCo
-# you can explore them and try to complish them with DRL
+# you can explore them and try to accomplish them with DRL
