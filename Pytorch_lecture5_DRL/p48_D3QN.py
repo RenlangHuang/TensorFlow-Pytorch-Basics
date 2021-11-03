@@ -40,7 +40,7 @@ class Net(torch.nn.Module):
         return actions_value
 
 
-class DoubleDuelingDQN(object):
+class DuelingDoubleDQN(object):
     def __init__(self, model_path, load_pretrained=True):
         self.eval_net, self.target_net = Net(), Net()
         if load_pretrained and os.path.exists(model_path):
@@ -104,16 +104,18 @@ class DoubleDuelingDQN(object):
         return loss.data.item()
 
 
-d3qn = DoubleDuelingDQN('./checkpoint/double_dueling_dqn.pth')
+d3qn = DuelingDoubleDQN('./checkpoint/d3qn.pth')
 losses, rewards = [], []
 for i in range(EPOCHS):
     s = env.reset()
+    episode_steps = 0
     episode_reward_sum = 0
 
     while True:
         env.render()
         a = d3qn.choose_action(s)
         s_, r, done, info = env.step(a)
+        episode_steps += 1
 
         # well defined reward
         x, x_dot, theta, theta_dot = s_
@@ -131,10 +133,10 @@ for i in range(EPOCHS):
 
         if done:
             print('episode %d, reward_sum: %.2f' % (i, episode_reward_sum))
-            rewards.append(episode_reward_sum)
+            rewards.append(episode_reward_sum/episode_steps)
             break
 
-torch.save(d3qn.eval_net.state_dict(),'./checkpoint/double_dueling_dqn.pth')
+torch.save(d3qn.eval_net.state_dict(),'./checkpoint/d3qn.pth')
 plt.subplot(1,2,1)
 plt.title('training loss')
 plt.plot(losses)
