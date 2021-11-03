@@ -15,8 +15,7 @@ MEMORY_CAPACITY = 10000
 BATCH_SIZE = 32
 
 env = gym.make('Pendulum-v1').unwrapped
-env = env.unwrapped
-env.seed(1)
+env.seed(1) # facilitate the repetition
 s_dim = env.observation_space.shape[0]
 a_dim = env.action_space.shape[0]
 a_bound = env.action_space.high
