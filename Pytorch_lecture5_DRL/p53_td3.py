@@ -191,7 +191,8 @@ def eval_policy(policy, env_name, eval_episodes=10):
 
 
 if __name__ == "__main__":
-    env = gym.make('Pendulum-v1')
+    env = gym.make('Pendulum-v1').unwrapped
+    env.seed(1) # facilitate the repetition
     state_dim = env.observation_space.shape[0]
     action_dim = env.action_space.shape[0] 
     max_action = float(env.action_space.high[0])
