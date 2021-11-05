@@ -13,4 +13,4 @@ gym
 
 tftest.py can verify that your installation and environment configuration are correct.
 
-Moreover, I am also programing a pytorch source code project tutorial at present, and some of the pytorch programs including basic gramma, MLP and CNN and some deep reinforcement learning examples of gym library are available, RNN models will be uploaded later.
+Moreover, I am also programing a pytorch source code tutorial at present, and some of the pytorch programs including basic gramma, MLP and CNN and some deep reinforcement learning examples of gym library are available, RNN models will be uploaded later.
