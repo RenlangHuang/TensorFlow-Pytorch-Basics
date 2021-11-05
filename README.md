@@ -1,5 +1,5 @@
 # TensorFlow & Pytorch Introduction Code
-This is an introductory python tensorflow2.0+ source code project tutorial modified based on a tensorflow MOOC tutorial from Peking University,
+This is an introductory python tensorflow2.0+ source code tutorial modified based on a tensorflow MOOC tutorial from Peking University,
 including basic data types and functions as well as the establishment, training and application of artificial neural networks. 
 We provide detailed examples of the basic functions and APIs, and we introduce MLP, CNN and RNN by establishing and training the models on some famous datasets, 
 such as the iris dataset, the mnist dataset, the cifar-10 dataset, the fashion dataset and so on.
