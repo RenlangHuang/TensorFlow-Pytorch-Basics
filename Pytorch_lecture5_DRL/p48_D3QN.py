@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 # hyper parameters
 BATCH_SIZE = 32
 LR = 0.01                                      # learning rate
-EPSILON = 0.9                                  # greedy policy
+EPSILON = 0.1                                  # greedy policy
 GAMMA = 0.9                                    # reward discount
 TARGET_REPLACE_ITER = 50                       # asynchronous update frequency for the target network
 MEMORY_CAPACITY = 1000                         # experience pool capacity
@@ -54,7 +54,7 @@ class DuelingDoubleDQN(object):
 
     def choose_action(self, s, greedy=False):
         s = torch.unsqueeze(torch.FloatTensor(s), 0) # 在dim=0增加维数为1的维度
-        if greedy or np.random.uniform() < EPSILON:  # ε-greedy
+        if greedy or np.random.uniform() > EPSILON:  # ε-greedy
             actions_value = self.eval_net.forward(s)
             action = torch.max(actions_value, 1)[1].data.numpy() # indices of maxQ
             action = action[0]
